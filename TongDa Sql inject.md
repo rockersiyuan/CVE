@@ -14,7 +14,7 @@ injection parameter:$DELETE_STR
 
 The parameter $DELETE_STR here is directly spliced into the sql statement after removing the null value. There is a sql injection point.
 
-![t1](G:\北理工\研一\灵通测\二期\漏洞挖掘\cve2\CVE\TongDa Sql inject.assets\t1.png)
+![t1](.\TongDa Sql inject.assets\t1.png)
 
 At the same time, global parameter filtering is shown in the figure below, and only conventional injection filtering detection is performed.
 
