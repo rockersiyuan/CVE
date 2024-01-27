@@ -46,7 +46,7 @@ Content-Length: 109
 src=manageadmin&type=add&id=(select*from(select+if(length(database())=3,sleep(5),1))a)|1|1&value=test3|123456
 ```
 
-![](https://github.com/rockersiyuan/CVE/blob/main/smart%20s20.assets/image-202401280119350441.png)
+![](https://github.com/rockersiyuan/CVE/blob/main/smart%20s20.assets/image-20240128011935044.png)
 
 There is a delay in page response echo, which proves the existence of SQL injection vulnerability.
 
@@ -94,6 +94,6 @@ In sysmanageajax.php, first of all, the $post_src and $post_type parameters are 
 
 Therefore, you can control the input of src=manageadmin and type=add, so that the program logic jumps to the content as shown below.
 
-![](https://github.com/rockersiyuan/CVE/blob/main/smart%20s20.assets/image-0240128010425584.png)
+![](https://github.com/rockersiyuan/CVE/blob/main/smart%20s20.assets/image-20240128010425584.png)
 
 The $rolseid parameter here is directly spliced into the SQL query statement without any security filtering, so there is a SQL injection point. The attacker only needs to control the id parameter passed in through the post method to cause SQL injection.
