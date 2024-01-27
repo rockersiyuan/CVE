@@ -21,7 +21,7 @@ To protect privacy, the public IP addresses in the following examples have been 
 
 (1)After entering the login page, the account password is admin/admin.
 
-![image-20240128012332771](smart s20.assets/image-20240128012332771.png)
+![](https://github.com/rockersiyuan/CVE/blob/main/smart%20s20.assets/image-20240128012332771.png)
 
 (2)Construct the following POC and execute the blind injection successfully. Note: The cookie field needs to be replaced with the value after login, and test2 cannot be repeated during the test.
 
@@ -46,7 +46,7 @@ Content-Length: 109
 src=manageadmin&type=add&id=(select*from(select+if(length(database())=3,sleep(5),1))a)|1|1&value=test3|123456
 ```
 
-![image-20240128011935044](smart s20.assets/image-20240128011935044.png)
+![](https://github.com/rockersiyuan/CVE/blob/main/smart%20s20.assets/image-202401280119350441.png)
 
 There is a delay in page response echo, which proves the existence of SQL injection vulnerability.
 
@@ -54,7 +54,7 @@ There is a delay in page response echo, which proves the existence of SQL inject
 
 (1)Enter the login page, the account password is admin/sssw-0476.
 
-![image-20240128012351673](smart s20.assets/image-20240128012351673.png)
+![](https://github.com/rockersiyuan/CVE/blob/main/smart%20s20.assets/image-20240128012351673.png)
 
 (2)Construct the following POC and execute the blind injection successfully. Note: The cookie field needs to be replaced with the value after login, and test2 cannot be repeated during the test.
 
@@ -82,8 +82,7 @@ Connection: close
 
 src=manageadmin&type=add&id=(select*from(select+if(length(database())=3,sleep(5),1))a)|1|1&value=test2|123456
 ```
-
-![image-20240128011551226](smart s20.assets/image-20240128011551226.png)
+![](https://github.com/rockersiyuan/CVE/blob/main/smart%20s20.assets/image-20240128011551226.png)
 
 There is a delayed response, and the 5s is consistent with the injection statement, so there is a SQL injection vulnerability.
 
@@ -91,10 +90,10 @@ There is a delayed response, and the 5s is consistent with the injection stateme
 
 In sysmanageajax.php, first of all, the $post_src and $post_type parameters are controllable and are passed in through the post method.
 
-![image-20240128005938583](smart s20.assets/image-20240128005938583.png)
+![](https://github.com/rockersiyuan/CVE/blob/main/smart%20s20.assets/image-20240128005938583.png)
 
 Therefore, you can control the input of src=manageadmin and type=add, so that the program logic jumps to the content as shown below.
 
-![image-20240128010425584](smart s20.assets/image-20240128010425584.png)
+![](https://github.com/rockersiyuan/CVE/blob/main/smart%20s20.assets/image-0240128010425584.png)
 
 The $rolseid parameter here is directly spliced into the SQL query statement without any security filtering, so there is a SQL injection point. The attacker only needs to control the id parameter passed in through the post method to cause SQL injection.
