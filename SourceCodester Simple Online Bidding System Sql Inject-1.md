@@ -4,24 +4,36 @@ official website:https://www.sourcecodester.com/php/14558/simple-online-bidding-
 
 version:v1.0
 
-route：/simple-online-bidding-system/index.php
+route：/simple-online-bidding-system/index.php?page=view_prod&id=1
 
 injection parameter:$_Get['id']
 
 #### 1.Vulnerability analysis
 
-The parameter $DELETE_STR here is directly spliced into the sql statement after removing the null value. There is a sql injection point.
+The parameter $_Get['id'] here is directly spliced into the sql statement after removing the null value. There is a sql injection point.
 
-#### 2.Vulnerability verification
+![image-20240515140442303](SourceCodester Simple Online Bidding System Sql Inject-1.assets/image-20240515140442303.png)
 
-We can use Cartesian product blind injection for injection. The following payload can determine that the first character of the database name is t, because it was successfully delayed at 116. The ASCII code 116 also corresponds to the lowercase letter t. By analogy, the database name and any information about the database can be obtained through blind injection.
+#### 2.Vulnerability verification and exploit
 
-#### 3.Exploit
+We can exploit vulnerabilities using methods such as federated query injection. The database name and any information about the database can be obtained through this injection point.
 
-Based on the above verification analysis, the SQL injection vulnerability exists. We can continue to obtain the complete name of the entire database through blind injection.
+First, you can test that the number of queries is 9, and further test the echo positions of the 9 query results, as shown in the figure below.
 
-The second digit of the database is intercepted through blind injection, and the second digit is judged to be the letter d through the delay time, and the ASCII code is 100.
+```
+page=view_prod&id=-2+union+select+1,2,3,4,5,6,7,8,9%23
+```
 
+![image-20240515142817374](SourceCodester Simple Online Bidding System Sql Inject-1.assets/image-20240515142817374.png)
 
+Then you can select 3 and 4 as the echo positions, modify the payload to query the database name and current database user name.
 
-In summary, the complete database name can be obtained based on this sql injection vulnerability: td_oa
+```
+page=view_prod&id=-2+union+select+1,2,database(),user(),5,6,7,8,9%23 
+```
+
+![image-20240515143141889](SourceCodester Simple Online Bidding System Sql Inject-1.assets/image-20240515143141889.png)
+
+We can also use sqlmap to conduct injection point testing. The test results are shown in the figure below. There are also SQL injection vulnerabilities that can be exploited.
+
+![image-20240515140535912](SourceCodester Simple Online Bidding System Sql Inject-1.assets/image-20240515140535912.png)
