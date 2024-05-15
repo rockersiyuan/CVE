@@ -12,7 +12,7 @@ injection parameter:$_Get['id']
 
 The parameter $_Get['id'] here is directly spliced into the sql statement after removing the null value. There is a sql injection point.
 
-![](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester%20Simple%20Online%20Bidding%20System%20Sql%20Inject-1.assets/image-20240515140442303.png)
+![image-20240515140442303](SourceCodester Simple Online Bidding System Sql Inject-1.assets/image-20240515140442303.png)
 
 #### 2.Vulnerability verification and exploit
 
@@ -24,7 +24,7 @@ First, you can test that the number of queries is 9, and further test the echo p
 page=view_prod&id=-2+union+select+1,2,3,4,5,6,7,8,9%23
 ```
 
-![](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester%20Simple%20Online%20Bidding%20System%20Sql%20Inject-1.assets/image-20240515142817374.png)
+![image-20240515142817374](SourceCodester Simple Online Bidding System Sql Inject-1.assets/image-20240515142817374.png)
 
 Then you can select 3 and 4 as the echo positions, modify the payload to query the database name and current database user name.
 
@@ -32,8 +32,8 @@ Then you can select 3 and 4 as the echo positions, modify the payload to query t
 page=view_prod&id=-2+union+select+1,2,database(),user(),5,6,7,8,9%23 
 ```
 
-![](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester%20Simple%20Online%20Bidding%20System%20Sql%20Inject-1.assets/image-20240515143141889.png)
+![image-20240515143141889](SourceCodester Simple Online Bidding System Sql Inject-1.assets/image-20240515143141889.png)
 
 We can also use sqlmap to conduct injection point testing. The test results are shown in the figure below. There are also SQL injection vulnerabilities that can be exploited.
 
-![](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester%20Simple%20Online%20Bidding%20System%20Sql%20Inject-1.assets/image-20240515140535912.png)
+![image-20240515140535912](SourceCodester Simple Online Bidding System Sql Inject-1.assets/image-20240515140535912.png)
