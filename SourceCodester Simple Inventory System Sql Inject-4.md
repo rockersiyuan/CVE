@@ -12,7 +12,7 @@ injection parameter:$_POST['ITEM']
 
 As shown in the figure below, in updateproduct.php, after the ITEM parameter is passed in through post, it is directly spliced into the SQL update statement without any security filtering, resulting in a SQL injection vulnerability. We can obtain any information in the database through time-based injection.
 
-![image-20240517162130368](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester Simple Inventory System Sql Inject-4.assets/image-20240517162130368.png)
+![image-20240517162130368](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester%20Simple%20Inventory%20System%20Sql%20Inject-4.assets/image-20240517162130368.png)
 
 #### 2.Vulnerability verification and exploit
 
@@ -39,4 +39,4 @@ ITEM=1&itemnumber=11111
 
 python sqlmap.py -r 1.txt --batch --current-db
 
-![image-20240517165913203](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester Simple Inventory System Sql Inject-4.assets/image-20240517165913203.png)
+![image-20240517165913203](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester%20Simple%20Inventory%20System%20Sql%20Inject-4.assets/image-20240517165913203.png)
