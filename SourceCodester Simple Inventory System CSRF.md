@@ -12,9 +12,9 @@ injection parameter:$_POST['itemnumber']
 
 As shown in the figure below, in tableedit.php, after the front-end sends the modified price data packet through the form form, there is a lack of token verification mechanism, and the back-end updateproduct.php is directly spliced into the SQL update statement, resulting in a CSRF vulnerability. We can change client user data by constructing malicious request packets.
 
-![image-20240517163532892](SourceCodester Simple Inventory System CSRF.assets/image-20240517163532892.png)
+![image-20240517163532892](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester Simple Inventory System CSRF.assets/image-20240517163532892.png)
 
-![image-20240517163554229](SourceCodester Simple Inventory System CSRF.assets/image-20240517163554229.png)
+![image-20240517163554229](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester Simple Inventory System CSRF.assets/image-20240517163554229.png)
 
 #### 2.Vulnerability verification and exploit
 
@@ -37,8 +37,8 @@ The construction poc is as follows. Save it as an html file and send it to the v
 </html>
 ```
 
-![image-20240517164018816](SourceCodester Simple Inventory System CSRF.assets/image-20240517164018816.png)
+![image-20240517164018816](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester Simple Inventory System CSRF.assets/image-20240517164018816.png)
 
 After clicking on the html file, the price is modified to 888.
 
-![image-20240517164148946](SourceCodester Simple Inventory System CSRF.assets/image-20240517164148946.png)
+![image-20240517164148946](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester Simple Inventory System CSRF.assets/image-20240517164148946.png)
